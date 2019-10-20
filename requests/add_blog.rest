@@ -1,0 +1,9 @@
+post http://localhost:3001/api/blogs
+Content-Type: application/json 
+
+{
+    "title": "Not-a-blog",
+    "author": "G.R.R Martin",
+    "url": "http://georgerrmartin.com/notablog",
+    "likes": 750
+}
