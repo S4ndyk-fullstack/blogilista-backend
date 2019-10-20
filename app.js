@@ -8,6 +8,7 @@ const config = require('./util/config')
 
 mongoose.connect(config.mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('CONNECTED TO MONGODB'))
+    .catch(error => console.log(error.message))
 
 app.use(cors())
 app.use(bodyParser.json())
