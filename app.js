@@ -3,7 +3,11 @@ const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose')
+const tokenExtractor = require('./middleware/tokenExtractor')
+const userRouter = require('./controllers/users')
 const blogRouter = require('./controllers/blogs')
+const loginRouter = require('./controllers/login')
+
 const config = require('./util/config')
 
 mongoose.connect(config.mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -12,6 +16,9 @@ mongoose.connect(config.mongoUrl, { useNewUrlParser: true, useUnifiedTopology: t
 
 app.use(cors())
 app.use(bodyParser.json())
+app.use(tokenExtractor)
 app.use('/api/blogs', blogRouter)
+app.use('/api/users', userRouter)
+app.use('/api/login', loginRouter)
 
 module.exports = app
